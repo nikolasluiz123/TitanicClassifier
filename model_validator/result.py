@@ -1,8 +1,13 @@
-class ClassifierCrossValScoreResult:
-    """
-        Classe para armazenar os valores das métricas matemáticas que podem ser analisadas e auxiliar no julgamento
-        do treinamento de um modelo de classificação
-    """
+from abc import ABC, abstractmethod
+
+
+class ClassifierValidationResult(ABC):
+
+    @abstractmethod
+    def show_cross_val_metrics(self):
+        ...
+
+class ClassifierCrossValidationResult(ClassifierValidationResult):
 
     def __init__(self,
                  mean: float,
@@ -11,7 +16,6 @@ class ClassifierCrossValScoreResult:
                  variance: float,
                  standard_error: float,
                  min_max_score: tuple[float, float],
-                 iteration_number: int,
                  estimator):
         """
             :param mean: Média dos scores individuais, fornece uma estimativa central do desempenho do modelo.
@@ -36,7 +40,6 @@ class ClassifierCrossValScoreResult:
         self.variance = variance
         self.standard_error = standard_error
         self.min_max_score = min_max_score
-        self.iteration_number = iteration_number
         self.estimator = estimator
 
     def show_cross_val_metrics(self):
@@ -53,8 +56,28 @@ class ClassifierCrossValScoreResult:
         print(f"Erro padrão da média      : {self.standard_error:.4f}")
         print(f"Score mínimo              : {self.min_max_score[0]:.4f}")
         print(f"Score máximo              : {self.min_max_score[1]:.4f}")
-        print(f'Número de Iterações       : {self.iteration_number}')
         print(f"Melhor Estimator          : {self.estimator} ")
         print("-" * 50)
 
+class ClassifierBasicValidationResult(ClassifierValidationResult):
 
+    def __init__(self,
+                 score: float,
+                 estimator,
+                 confusion_matrix):
+        self.score = score
+        self.estimator = estimator
+        self.confusion_matrix = confusion_matrix
+
+    def show_cross_val_metrics(self):
+        """
+        Função para exibir as métricas de validação cruzada de forma clara e estruturada.
+        """
+
+        print("Resultados das Métricas de Validação Básica da Classificação")
+        print("-" * 50)
+        print(f"Média dos scores          : {self.score:.4f}")
+        print(f"Melhor Estimator          : {self.estimator} ")
+        print(f"Matriz de Confusão:  ")
+        print(self.confusion_matrix)
+        print("-" * 50)

@@ -4,20 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8434c2a0-f7a2-4fcf-9853-9e3c11db9936" name="Changes" comment="feat: pesquisa de parâmetros aleatória">
-      <change afterPath="$PROJECT_DIR$/model_tests/decision_tree_classifier/decision_tree_classifier_test_random_search.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model_tests/k_neighbors_classifier/k_neighbors_classifier_test_random_search.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model_tests/random_forest_classifier/random_forest_classifier_test_random_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8434c2a0-f7a2-4fcf-9853-9e3c11db9936" name="Changes" comment="feat: implementação do histórico e outros algoritmos de classificação">
+      <change afterPath="$PROJECT_DIR$/hiper_params_search/searcher.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manager/process_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model_validator/basic_validator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model_validator/cross_validator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model_validator/result.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model_validator/validator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/decision_tree_classifier/test_grid_search_basic_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/decision_tree_classifier/test_grid_search_cross_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/decision_tree_classifier/test_random_search_basic_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/decision_tree_classifier/test_random_search_cross_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/k_neighbors_classifier/test_grid_search_basic_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/k_neighbors_classifier/test_grid_search_cross_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/k_neighbors_classifier/test_random_search_basic_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/k_neighbors_classifier/test_random_search_cross_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/random_forest_classifier/test_grid_search_basic_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/random_forest_classifier/test_grid_search_cross_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/random_forest_classifier/test_random_search_basic_validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/random_forest_classifier/test_random_search_cross_validation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hiper_params_search/grid_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/hiper_params_search/grid_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hiper_params_search/history_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/hiper_params_search/history_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hiper_params_search/random_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/hiper_params_search/random_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model_tests/decision_tree_classifier/decision_tree_classifier_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model_tests/decision_tree_classifier/tested_params/tested_params_file.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model_tests/random_forest_classifier/random_forest_classifier_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model_validation/classifier_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_validation/classifier_validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hiper_params_search/grid_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/hiper_params_search/grid_searcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hiper_params_search/history_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager/history_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hiper_params_search/random_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/hiper_params_search/random_searcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tests/decision_tree_classifier/decision_tree_classifier_test_random_search.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tests/decision_tree_classifier/history/model_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tests/decision_tree_classifier/history/tested_params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tests/k_neighbors_classifier/history/model_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tests/k_neighbors_classifier/history/tested_params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tests/k_neighbors_classifier/k_neighbors_classifier_test_random_search.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tests/random_forest_classifier/history/model_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tests/random_forest_classifier/history/tested_params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tests/random_forest_classifier/random_forest_classifier_test_random_search.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_validation/classifier_validation.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,138 +79,43 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.decision_tree_classifier_test.executor": "Run",
+    "Python.decision_tree_classifier_test_random_search (1).executor": "Run",
+    "Python.decision_tree_classifier_test_random_search (2).executor": "Run",
+    "Python.decision_tree_classifier_test_random_search_2.executor": "Run",
+    "Python.k_neighbors_classifier_test_random_search.executor": "Run",
     "Python.main.executor": "Run",
     "Python.random_forest_classifier_test (1).executor": "Run",
     "Python.random_forest_classifier_test.executor": "Run",
+    "Python.test_grid_search_basic_validation (1).executor": "Run",
+    "Python.test_grid_search_basic_validation.executor": "Run",
+    "Python.test_grid_search_cross_validation (1).executor": "Run",
+    "Python.test_grid_search_cross_validation.executor": "Run",
+    "Python.test_random_search_basic_validation (1).executor": "Run",
+    "Python.test_random_search_basic_validation.executor": "Run",
+    "Python.test_random_search_cross_validation (1).executor": "Run",
+    "Python.test_random_search_cross_validation.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/nikol/git/IA/TitanicClassifier"
+    "last_opened_file_path": "C:/Users/nikol/git/IA/TitanicClassifier/tests/random_forest_classifier"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nikol\git\IA\TitanicClassifier\tests\random_forest_classifier" />
+      <recent name="C:\Users\nikol\git\IA\TitanicClassifier\tests\k_neighbors_classifier" />
+      <recent name="C:\Users\nikol\git\IA\TitanicClassifier\tests\decision_tree_classifier" />
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\model_tests\random_forest_classifier" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nikol\git\IA\TitanicClassifier\manager" />
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\model_tests\random_forest_classifier" />
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\model_tests\decision_tree_classifier" />
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\model_validation" />
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier" />
-      <recent name="C:\Users\nikol\git\IA\TitanicClassifier\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.k_neighbors_classifier_test_random_search">
-    <configuration name="data_exploration" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="TitanicClassifier" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\nikol\git\IA\TitanicClassifier\data_exploration.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="decision_tree_classifier_test_random_search (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="TitanicClassifier" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model_tests/decision_tree_classifier" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_tests/decision_tree_classifier/decision_tree_classifier_test_random_search.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="decision_tree_classifier_test_random_search" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="TitanicClassifier" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model_tests/decision_tree_classifier" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\nikol\git\IA\TitanicClassifier\model_tests\decision_tree_classifier\decision_tree_classifier_test_random_search.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="k_neighbors_classifier_test_random_search" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="TitanicClassifier" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model_tests/k_neighbors_classifier" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_tests/k_neighbors_classifier/k_neighbors_classifier_test_random_search.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="random_forest_classifier_test_random_search" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="TitanicClassifier" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model_tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\nikol\git\IA\TitanicClassifier\model_tests\random_forest_classifier\random_forest_classifier_test_random_search.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.test_random_search_cross_validation (1)">
     <configuration name="random_forest_classifier_test_random_search" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TitanicClassifier" />
       <option name="ENV_FILES" value="" />
@@ -214,13 +138,123 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test_grid_search_basic_validation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TitanicClassifier" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/random_forest_classifier" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/random_forest_classifier/test_grid_search_basic_validation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_grid_search_cross_validation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TitanicClassifier" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/random_forest_classifier" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/random_forest_classifier/test_grid_search_cross_validation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_random_search_basic_validation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TitanicClassifier" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/random_forest_classifier" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/random_forest_classifier/test_random_search_basic_validation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_random_search_cross_validation (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TitanicClassifier" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/random_forest_classifier" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/random_forest_classifier/test_random_search_cross_validation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_random_search_cross_validation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TitanicClassifier" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/k_neighbors_classifier" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/k_neighbors_classifier/test_random_search_cross_validation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.k_neighbors_classifier_test_random_search" />
-        <item itemvalue="Python.decision_tree_classifier_test_random_search (1)" />
-        <item itemvalue="Python.random_forest_classifier_test_random_search" />
-        <item itemvalue="Python.decision_tree_classifier_test_random_search" />
-        <item itemvalue="Python.random_forest_classifier_test_random_search" />
+        <item itemvalue="Python.test_random_search_cross_validation (1)" />
+        <item itemvalue="Python.test_random_search_basic_validation" />
+        <item itemvalue="Python.test_grid_search_cross_validation" />
+        <item itemvalue="Python.test_grid_search_basic_validation" />
+        <item itemvalue="Python.test_random_search_cross_validation" />
       </list>
     </recent_temporary>
   </component>
@@ -248,11 +282,20 @@
       <option name="project" value="LOCAL" />
       <updated>1728522460160</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: implementação do histórico e outros algoritmos de classificação">
+      <option name="closed" value="true" />
+      <created>1728605987667</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728605987667</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: pesquisa de parâmetros aleatória" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: pesquisa de parâmetros aleatória" />
+    <MESSAGE value="feat: implementação do histórico e outros algoritmos de classificação" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implementação do histórico e outros algoritmos de classificação" />
   </component>
 </project>
