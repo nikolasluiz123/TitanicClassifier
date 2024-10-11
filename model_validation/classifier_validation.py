@@ -26,6 +26,7 @@ class ClassifierCrossValScoreResult:
             a média estimada está da média verdadeira.
             :param min_max_score: O score máximo e mínimo ajudam a identificar a melhor e a pior performance entre os
             folds.
+            :param iteration_number Número de iterações que o random search de hiper parâmetro realizou
             :param estimator Estimador com os melhores parâmetros e que foi testado.
         """
 

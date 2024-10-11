@@ -1,15 +1,17 @@
 import time
 
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import RandomizedSearchCV, cross_val_score
-from sklearn.tree import DecisionTreeClassifier
 
 from hiper_params_search.history_manager import SearchParamsHistoryManager
 from model_validation.classifier_validation import ClassifierCrossValScoreResult
 
 
-class RandomSearchClassifierHipperParamsSearch:
+class ClassifierRandomHipperParamsSearch:
+    """
+    Classe para realização de todos os processos que envolvem a busca de hiper parâmetros para classificadores do
+    scikit-learn.
+    """
 
     def __init__(self,
                  data_x,
@@ -17,7 +19,9 @@ class RandomSearchClassifierHipperParamsSearch:
                  params: dict[str, list],
                  history_dir: str,
                  history_file: str,
-                 cv, seed: int = 1,
+                 cv,
+                 estimator,
+                 seed: int = 1,
                  n_jobs: int = -1,
                  use_history: bool = True,
                  history_index: int = -1):
@@ -25,7 +29,14 @@ class RandomSearchClassifierHipperParamsSearch:
             :param data_x: Features obtidas dos dados analisados
             :param data_y: Classes ou o resultado que deseja obter
             :param params: Hiper parâmetros que deseja testar
+            :param history_dir Diretório onde serão salvos os dados de histórico da busca
+            :param history_file Nome do arquivo JSON de histórico
             :param cv: Estratégia de divisão dos grupos
+            :param estimator Estimador que vai ser utilizado na busca
+            :param seed Seed para reprodutibilidade
+            :param n_jobs Thread do processador que serão utilizadas
+            :param use_history Flag que indica se deve recuperar um dado do histórico ou realizar o processamento completo
+            :param history_index Índice utilizado para recuperar um dado do histórico caso use_history=True
         """
 
         self.params = params
@@ -37,6 +48,7 @@ class RandomSearchClassifierHipperParamsSearch:
         self.history_file = history_file
         self.use_history = use_history
         self.history_index = history_index
+        self.estimator = estimator
 
         self.start_search_parameter_time = 0
         self.end_search_parameter_time = 0
@@ -44,25 +56,23 @@ class RandomSearchClassifierHipperParamsSearch:
         self.start_best_model_cross_validation = 0
         self.end_best_model_cross_validation = 0
 
-        self.history_manager = SearchParamsHistoryManager(output_directory=history_dir, file_name=history_file)
+        self.history_manager = SearchParamsHistoryManager()
 
         np.random.seed(seed)
 
-
-    def _search_hipper_parameters(self, number_iterations: int, estimator) -> RandomizedSearchCV:
+    def search_hipper_parameters(self, number_iterations: int) -> RandomizedSearchCV:
         """
             Função para realizar a pesquisa dos melhores parâmetros para o estimador RandomForestRegressor.
 
             :param number_iterations: Quantidade de vezes que o RandomizedSearchCV vai escolher os valores dos parâmetros
             fornecidos no parâmetro params
-            :param estimator Instância do estimador
 
             :return: Retorna o objeto RandomizedSearchCV que poderá ser utilizado na função calculate_cross_val_score
             e obter as métricas.
         """
 
         if not self.use_history or not self.history_manager.has_history():
-            search = RandomizedSearchCV(estimator=estimator,
+            search = RandomizedSearchCV(estimator=self.estimator,
                                         param_distributions=self.params,
                                         cv=self.cv,
                                         n_jobs=self.n_jobs,
@@ -106,8 +116,8 @@ class RandomSearchClassifierHipperParamsSearch:
                 variance=np.var(scores),
                 standard_error=np.std(scores) / np.sqrt(len(scores)),
                 min_max_score=(np.min(scores), np.max(scores)),
-                estimator=searcher.best_estimator_,
-                iteration_number=searcher.n_iter
+                iteration_number=searcher.n_iter,
+                estimator=searcher.best_estimator_
             )
 
             search_time = self.end_search_parameter_time - self.start_search_parameter_time
@@ -121,8 +131,6 @@ class RandomSearchClassifierHipperParamsSearch:
 
         else:
             return self.history_manager.load_result_from_history(index=self.history_index)
-
-
 
     def show_processing_time(self):
         """
@@ -144,25 +152,3 @@ class RandomSearchClassifierHipperParamsSearch:
         minutes, seconds = divmod(remainder, 60)
 
         return f"{int(hours):02}:{int(minutes):02}:{int(seconds):02}"
-
-class RandomForestRandomSearchClassifierSearch(RandomSearchClassifierHipperParamsSearch):
-    """
-        Classe para realizar a pesquisa de hiper parametros do estimador RandomForestClassifier utilizando RandomizedSearchCV
-        para evitar percorrer todas as opções de valores.
-    """
-
-    def __init__(self, data_x, data_y, params: dict[str, list], cv, seed: int = 1, n_jobs: int = -1):
-        super().__init__(data_x, data_y, params, cv, seed, n_jobs)
-
-    def search_hipper_parameters(self, number_iterations: int) -> RandomizedSearchCV:
-        return super()._search_hipper_parameters(number_iterations=number_iterations, estimator=RandomForestClassifier())
-
-
-class DecisionTreeRandomSearchClassifierSearch(RandomSearchClassifierHipperParamsSearch):
-    """
-        Classe para realizar a pesquisa de hiper parametros do estimador DecisionTreeClassifier utilizando RandomizedSearchCV
-        para evitar percorrer todas as opções de valores.
-    """
-
-    def search_hipper_parameters(self, number_iterations: int) -> RandomizedSearchCV:
-        return super()._search_hipper_parameters(number_iterations=number_iterations, estimator=DecisionTreeClassifier())
