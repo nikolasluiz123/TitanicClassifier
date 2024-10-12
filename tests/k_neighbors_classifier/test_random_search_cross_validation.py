@@ -2,7 +2,7 @@ import pandas as pd
 from scipy.stats import randint
 from sklearn.neighbors import KNeighborsClassifier
 
-from data_processing import get_train_data
+from data.data_processing import get_train_data
 from hiper_params_search.random_searcher import ClassifierRandomHipperParamsSearcher
 from manager.history_manager import CrossValidationHistoryManager
 from manager.process_manager import ProcessManager

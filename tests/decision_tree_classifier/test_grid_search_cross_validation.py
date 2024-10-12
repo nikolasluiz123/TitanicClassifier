@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 
-from data_processing import get_train_data
+from data.data_processing import get_train_data
 from hiper_params_search.grid_searcher import ClassifierGridHipperParamsSearcher
 from manager.history_manager import CrossValidationHistoryManager
 from manager.process_manager import ProcessManager

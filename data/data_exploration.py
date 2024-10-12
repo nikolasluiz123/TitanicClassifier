@@ -1,7 +1,7 @@
 import pandas as pd
 from tabulate import tabulate
 
-df_treino = pd.read_csv('data/train.csv')
+df_treino = pd.read_csv('train.csv')
 
 print('Dados de Treino:')
 print(tabulate(df_treino.head(), headers='keys', tablefmt='psql'))

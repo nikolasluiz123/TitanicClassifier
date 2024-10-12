@@ -2,7 +2,7 @@ import pandas as pd
 from scipy.stats import randint
 from sklearn.ensemble import RandomForestClassifier
 
-from data_processing import get_train_data
+from data.data_processing import get_train_data
 from hiper_params_search.random_searcher import ClassifierRandomHipperParamsSearcher
 from manager.history_manager import BasicValidationHistoryManager
 from manager.process_manager import ProcessManager
