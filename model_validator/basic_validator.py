@@ -8,15 +8,18 @@ from model_validator.validator import BaseValidator
 
 
 class BasicValidator(BaseValidator):
+    """
+    Classe que implementa uma validação simples que realiza a divisão dos dados em treino e teste, em seguida, realiza
+    o treinamento e a previsão para avialiar o resultado.
+    """
 
     def __init__(self,
                  data_x,
                  data_y,
-                 cv,
                  log_level: int = 1,
                  scoring='accuracy',
                  test_size: float = 0.25):
-        super().__init__(data_x, data_y, cv, log_level, scoring)
+        super().__init__(data_x, data_y, log_level, scoring)
 
         self.test_size = test_size
 

@@ -18,13 +18,24 @@ class HistoryManager(ABC):
     """
 
     def __init__(self, output_directory: str, models_directory: str, params_file_name: str):
+        """
+        :param output_directory: Diretório que armazenará todos os dados de histórico
+        :param models_directory: Diretório específico para os modelos treinados
+        :param params_file_name: Nome do arquivo JSON que salvará os valores dos parâmetros que geraram o melhor modelo
+        """
         self.output_directory = output_directory
         self.models_directory = os.path.join(self.output_directory, models_directory)
         self.params_file_name = params_file_name
 
     @abstractmethod
     def save_result(self, classifier_result, search_time: str, validation_time: str):
-       ...
+        """
+        Função responsável por salvar todos os dados relevantes para o histórico.
+
+        :param classifier_result: Resultado da validação
+        :param search_time: Tempo que levou a execução da busca por parâmetros
+        :param validation_time: Tempo que levou a execução da validação
+        """
 
     def _create_output_dir(self):
         """
@@ -71,7 +82,11 @@ class HistoryManager(ABC):
 
     @abstractmethod
     def load_result_from_history(self, index: int = -1) -> ClassifierValidationResult:
-        ...
+        """
+        Função para recuperar um registro da lista do JSON de histórico
+
+        :param index: Índice da lista que deseja retornar
+        """
 
     def _get_dictionary_from_json(self, index):
         """
@@ -133,18 +148,15 @@ class HistoryManager(ABC):
             return len(data)
 
 class CrossValidationHistoryManager(HistoryManager):
+    """
+    Classe para manipular o histórico quando é utilizada a estratégia de validação cruzada, que gera N valores e podem
+    ser calculadas diversas métricas e obter resultados confiáveis.
+    """
 
     def __init__(self, output_directory: str, models_directory: str, params_file_name: str):
         super().__init__(output_directory, models_directory, params_file_name)
 
     def save_result(self, classifier_result: ClassifierCrossValidationResult, search_time: str, validation_time: str):
-        """
-        Função utilizada para salvar os resultados obtidos da busca de hiper parâmetros.
-
-        :param classifier_result: Objeto com os dados do resultado da busca
-        :param search_time: Tempo que demorou para realizar a busca dos melhores parâmetros
-        :param validation_time: Tempo que demorou para realizar a validação cruzada com o melhor modelo
-        """
         dictionary = {
             'mean': classifier_result.mean,
             'standard_deviation': classifier_result.standard_deviation,
@@ -162,11 +174,6 @@ class CrossValidationHistoryManager(HistoryManager):
         self._save_model(classifier_result.estimator)
 
     def load_result_from_history(self, index: int = -1) -> ClassifierCrossValidationResult:
-        """
-        Carrega o objeto ClassifierCrossValScoreResult com os dados do histórico.
-
-        :param index Índice utilizado para recuperar da lista de parâmetros o resultado que deseja visualizar novamente
-        """
         result_dict = self._get_dictionary_from_json(index)
 
         return ClassifierCrossValidationResult(
@@ -181,18 +188,16 @@ class CrossValidationHistoryManager(HistoryManager):
 
 
 class BasicValidationHistoryManager(HistoryManager):
+    """
+    Classe para manipular o histórico quando é utilizada a estratégia de validação basica, separando em treino e teste.
+
+    Optando por essa maneira obtemos menos métricas pois só teremos 1 valor no predict.
+    """
 
     def __init__(self, output_directory: str, models_directory: str, params_file_name: str):
         super().__init__(output_directory, models_directory, params_file_name)
 
     def save_result(self, classifier_result: ClassifierBasicValidationResult, search_time: str, validation_time: str):
-        """
-        Função utilizada para salvar os resultados obtidos da busca de hiper parâmetros.
-
-        :param classifier_result: Objeto com os dados do resultado da busca
-        :param search_time: Tempo que demorou para realizar a busca dos melhores parâmetros
-        :param validation_time: Tempo que demorou para realizar a validação cruzada com o melhor modelo
-        """
         dictionary = {
             'score': classifier_result.score,
             'estimator_params': classifier_result.estimator.get_params(),
@@ -206,11 +211,6 @@ class BasicValidationHistoryManager(HistoryManager):
         self._save_model(classifier_result.estimator)
 
     def load_result_from_history(self, index: int = -1) -> ClassifierBasicValidationResult:
-        """
-        Carrega o objeto ClassifierCrossValScoreResult com os dados do histórico.
-
-        :param index Índice utilizado para recuperar da lista de parâmetros o resultado que deseja visualizar novamente
-        """
         result_dict = self._get_dictionary_from_json(index)
 
         return ClassifierBasicValidationResult(

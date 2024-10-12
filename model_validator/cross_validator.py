@@ -8,27 +8,22 @@ from model_validator.validator import BaseValidator
 
 
 class CrossValidator(BaseValidator):
+    """
+    Classe que implementa a validação crusada do modelo encontrado pela busca de hiper parâmetros
+    """
 
     def __init__(self,
                  data_x,
                  data_y,
-                 cv,
                  log_level: int = 1,
                  n_jobs: int = -1,
                  scoring='accuracy'):
-        super().__init__(data_x, data_y, cv, log_level, scoring)
+        super().__init__(data_x, data_y, log_level, scoring)
 
         self.n_jobs = n_jobs
 
 
     def validate(self, searcher) -> ClassifierCrossValidationResult:
-        """
-            Função para realizar a validação cruzada dos dados utilizando o resultado da busca de hiperparâmetros
-            para validar o estimador encontrado.
-
-            :return: Retorna um objeto CrossValScoreResult contendo as métricas matemáticas
-        """
-
         self.start_best_model_validation = time.time()
 
         scores = cross_val_score(estimator=searcher,

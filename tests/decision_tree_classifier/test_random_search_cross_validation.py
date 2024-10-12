@@ -1,6 +1,5 @@
 import pandas as pd
 from scipy.stats import uniform, randint
-from sklearn.model_selection import KFold
 from sklearn.tree import DecisionTreeClassifier
 
 from data_processing import get_train_data
@@ -32,11 +31,10 @@ params_searcher = ClassifierRandomHipperParamsSearcher(
     data_x=x,
     data_y=y,
     params=search_params,
-    cv=KFold(5),
     estimator=DecisionTreeClassifier()
 )
 
-validator = CrossValidator(data_x=x, data_y=y, cv=KFold(5))
+validator = CrossValidator(data_x=x, data_y=y)
 history_manager = CrossValidationHistoryManager(output_directory='history',
                                                 models_directory='models_cross_validation_random_search',
                                                 params_file_name='tested_params_cross_validation_random_search')
@@ -50,4 +48,4 @@ process_manager = ProcessManager(
     history_index=None
 )
 
-process_manager.process(number_interations=50)
+process_manager.process(number_interations=1000)

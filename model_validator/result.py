@@ -2,10 +2,15 @@ from abc import ABC, abstractmethod
 
 
 class ClassifierValidationResult(ABC):
+    """
+    Classe base de resultado de validação dos modelos de classificação
+    """
 
     @abstractmethod
     def show_cross_val_metrics(self):
-        ...
+        """
+        Função para exibir as métricas de validação.
+        """
 
 class ClassifierCrossValidationResult(ClassifierValidationResult):
 
@@ -30,7 +35,6 @@ class ClassifierCrossValidationResult(ClassifierValidationResult):
             a média estimada está da média verdadeira.
             :param min_max_score: O score máximo e mínimo ajudam a identificar a melhor e a pior performance entre os
             folds.
-            :param iteration_number Número de iterações que o random search de hiper parâmetro realizou
             :param estimator Estimador com os melhores parâmetros e que foi testado.
         """
 
@@ -43,10 +47,6 @@ class ClassifierCrossValidationResult(ClassifierValidationResult):
         self.estimator = estimator
 
     def show_cross_val_metrics(self):
-        """
-        Função para exibir as métricas de validação cruzada de forma clara e estruturada.
-        """
-
         print("Resultados das Métricas de Validação Cruzada da Classificação")
         print("-" * 50)
         print(f"Média dos scores          : {self.mean:.4f}")
@@ -70,13 +70,9 @@ class ClassifierBasicValidationResult(ClassifierValidationResult):
         self.confusion_matrix = confusion_matrix
 
     def show_cross_val_metrics(self):
-        """
-        Função para exibir as métricas de validação cruzada de forma clara e estruturada.
-        """
-
         print("Resultados das Métricas de Validação Básica da Classificação")
         print("-" * 50)
-        print(f"Média dos scores          : {self.score:.4f}")
+        print(f"Média do score          : {self.score:.4f}")
         print(f"Melhor Estimator          : {self.estimator} ")
         print(f"Matriz de Confusão:  ")
         print(self.confusion_matrix)

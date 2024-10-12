@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.model_selection import KFold
 from sklearn.neighbors import KNeighborsClassifier
 
 from data_processing import get_train_data
@@ -27,11 +26,10 @@ params_searcher = ClassifierGridHipperParamsSearcher(
     data_x=x,
     data_y=y,
     params=search_params,
-    cv=KFold(5),
     estimator=KNeighborsClassifier()
 )
 
-validator = CrossValidator(data_x=x, data_y=y, cv=KFold(5))
+validator = CrossValidator(data_x=x, data_y=y)
 history_manager = CrossValidationHistoryManager(output_directory='history',
                                                 models_directory='models_cross_validation_grid_search',
                                                 params_file_name='tested_params_cross_validation_grid_search')
@@ -45,4 +43,4 @@ process_manager = ProcessManager(
     history_index=None
 )
 
-process_manager.process(number_interations=50)
+process_manager.process()

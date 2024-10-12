@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.model_selection import KFold
 from sklearn.tree import DecisionTreeClassifier
 
 from data_processing import get_train_data
@@ -20,19 +19,20 @@ y = df_train['sobreviveu']
 search_params = {
     'criterion': ['gini', 'entropy'],
     'splitter': ['best', 'random'],
-    'max_depth': [2, 4, 6],
-    'max_features': [None, 'sqrt', 'log2'],
+    'max_depth': [2, 4, 6, 10],
+    'max_features': [None, 'sqrt', 'log2', 4, 8, 16, 32],
+    'min_samples_split': [2, 4, 6],
+    'min_samples_leaf': [1, 2, 4, 8, 16]
 }
 
 params_searcher = ClassifierGridHipperParamsSearcher(
     data_x=x,
     data_y=y,
     params=search_params,
-    cv=KFold(5),
     estimator=DecisionTreeClassifier()
 )
 
-validator = BasicValidator(data_x=x, data_y=y, cv=KFold(5))
+validator = BasicValidator(data_x=x, data_y=y)
 history_manager = BasicValidationHistoryManager(output_directory='history',
                                                 models_directory='models_basic_validation_grid_search',
                                                 params_file_name='tested_params_basic_validation_grid_search')
@@ -46,4 +46,4 @@ process_manager = ProcessManager(
     history_index=None
 )
 
-process_manager.process(number_interations=50)
+process_manager.process()

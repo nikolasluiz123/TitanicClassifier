@@ -1,6 +1,5 @@
 import pandas as pd
 from scipy.stats import randint
-from sklearn.model_selection import KFold
 from sklearn.neighbors import KNeighborsClassifier
 
 from data_processing import get_train_data
@@ -19,7 +18,7 @@ x = pd.get_dummies(x, columns=obj_columns)
 y = df_train['sobreviveu']
 
 search_params = {
-    'n_neighbors': randint(1, 10),
+    'n_neighbors': randint(1, 100),
     'weights': ['uniform', 'distance'],
     'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
 }
@@ -28,11 +27,10 @@ params_searcher = ClassifierRandomHipperParamsSearcher(
     data_x=x,
     data_y=y,
     params=search_params,
-    cv=KFold(5),
     estimator=KNeighborsClassifier()
 )
 
-validator = BasicValidator(data_x=x, data_y=y, cv=KFold(5))
+validator = BasicValidator(data_x=x, data_y=y)
 history_manager = BasicValidationHistoryManager(output_directory='history',
                                                 models_directory='models_basic_validation_random_search',
                                                 params_file_name='tested_params_basic_validation_random_search')
@@ -46,4 +44,4 @@ process_manager = ProcessManager(
     history_index=None
 )
 
-process_manager.process(number_interations=50)
+process_manager.process(number_interations=1000)
