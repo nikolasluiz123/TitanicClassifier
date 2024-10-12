@@ -1,0 +1,32 @@
+[
+    {
+        "score": 0.7653631284916201,
+        "estimator_params": {
+            "ccp_alpha": 0.0,
+            "class_weight": null,
+            "criterion": "gini",
+            "max_depth": 6,
+            "max_features": 8,
+            "max_leaf_nodes": null,
+            "min_impurity_decrease": 0.0,
+            "min_samples_leaf": 2,
+            "min_samples_split": 2,
+            "min_weight_fraction_leaf": 0.0,
+            "monotonic_cst": null,
+            "random_state": null,
+            "splitter": "best"
+        },
+        "confusion_matrix": [
+            [
+                88,
+                11
+            ],
+            [
+                31,
+                49
+            ]
+        ],
+        "search_time": "00:00:04",
+        "validation_time": "00:00:02"
+    }
+]

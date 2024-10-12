@@ -1,0 +1,70 @@
+[
+    {
+        "mean": 0.8095144292327392,
+        "standard_deviation": 0.027110256222361673,
+        "median": 0.8041958041958042,
+        "variance": 0.0007349659924420998,
+        "standard_error": 0.01212407516012747,
+        "min_max_score": [
+            0.7692307692307693,
+            0.8531468531468531
+        ],
+        "estimator_params": {
+            "bootstrap": true,
+            "ccp_alpha": 0.0,
+            "class_weight": null,
+            "criterion": "entropy",
+            "max_depth": 6,
+            "max_features": null,
+            "max_leaf_nodes": null,
+            "max_samples": null,
+            "min_impurity_decrease": 0.0,
+            "min_samples_leaf": 2,
+            "min_samples_split": 2,
+            "min_weight_fraction_leaf": 0.0,
+            "monotonic_cst": null,
+            "n_estimators": 100,
+            "n_jobs": null,
+            "oob_score": false,
+            "random_state": null,
+            "verbose": 0,
+            "warm_start": false
+        },
+        "search_time": "00:00:18",
+        "validation_time": "00:02:30"
+    },
+    {
+        "mean": 0.8109130306313406,
+        "standard_deviation": 0.023904522445064857,
+        "median": 0.8028169014084507,
+        "variance": 0.0005714261933266095,
+        "standard_error": 0.0106904274313669,
+        "min_max_score": [
+            0.7832167832167832,
+            0.8531468531468531
+        ],
+        "estimator_params": {
+            "bootstrap": true,
+            "ccp_alpha": 0.0,
+            "class_weight": null,
+            "criterion": "entropy",
+            "max_depth": 6,
+            "max_features": null,
+            "max_leaf_nodes": null,
+            "max_samples": null,
+            "min_impurity_decrease": 0.0,
+            "min_samples_leaf": 2,
+            "min_samples_split": 6,
+            "min_weight_fraction_leaf": 0.0,
+            "monotonic_cst": null,
+            "n_estimators": 100,
+            "n_jobs": null,
+            "oob_score": false,
+            "random_state": null,
+            "verbose": 0,
+            "warm_start": false
+        },
+        "search_time": "00:00:18",
+        "validation_time": "00:02:32"
+    }
+]

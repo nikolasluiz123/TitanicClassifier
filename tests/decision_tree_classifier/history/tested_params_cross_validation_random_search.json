@@ -1,0 +1,30 @@
+[
+    {
+        "mean": 0.7395055648576776,
+        "standard_deviation": 0.05819282504690473,
+        "median": 0.7482517482517482,
+        "variance": 0.003386404886939662,
+        "standard_error": 0.02602462252152627,
+        "min_max_score": [
+            0.6293706293706294,
+            0.7972027972027972
+        ],
+        "estimator_params": {
+            "ccp_alpha": 0.0,
+            "class_weight": null,
+            "criterion": "gini",
+            "max_depth": 4,
+            "max_features": null,
+            "max_leaf_nodes": null,
+            "min_impurity_decrease": 0.0,
+            "min_samples_leaf": 16,
+            "min_samples_split": 8,
+            "min_weight_fraction_leaf": 0.13648244121947617,
+            "monotonic_cst": null,
+            "random_state": null,
+            "splitter": "random"
+        },
+        "search_time": "00:00:03",
+        "validation_time": "00:00:13"
+    }
+]

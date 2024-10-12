@@ -1,0 +1,25 @@
+[
+    {
+        "mean": 0.7829213040480646,
+        "standard_deviation": 0.014539123147872063,
+        "median": 0.7887323943661971,
+        "variance": 0.00021138610190898923,
+        "standard_error": 0.006502093538376531,
+        "min_max_score": [
+            0.7552447552447552,
+            0.7972027972027972
+        ],
+        "estimator_params": {
+            "algorithm": "ball_tree",
+            "leaf_size": 30,
+            "metric": "minkowski",
+            "metric_params": null,
+            "n_jobs": null,
+            "n_neighbors": 3,
+            "p": 2,
+            "weights": "uniform"
+        },
+        "search_time": "00:00:02",
+        "validation_time": "00:00:02"
+    }
+]
