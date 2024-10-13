@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8434c2a0-f7a2-4fcf-9853-9e3c11db9936" name="Changes" comment="fix: ajuste na separação de grupos e na seed" />
+    <list default="true" id="8434c2a0-f7a2-4fcf-9853-9e3c11db9936" name="Changes" comment="refactor: movendo data_exploration.py e data_processing.py para dentro do diretório data">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +48,8 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.data_exploration.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_processing.executor&quot;: &quot;Run&quot;,
     &quot;Python.decision_tree_classifier_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.decision_tree_classifier_test_random_search (1).executor&quot;: &quot;Run&quot;,
     &quot;Python.decision_tree_classifier_test_random_search (2).executor&quot;: &quot;Run&quot;,
@@ -75,11 +80,11 @@
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\model_tests\random_forest_classifier" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nikol\git\IA\TitanicClassifier\data" />
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\manager" />
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\model_tests\random_forest_classifier" />
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\model_tests\decision_tree_classifier" />
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\model_validation" />
-      <recent name="C:\Users\nikol\git\IA\TitanicClassifier" />
     </key>
   </component>
   <component name="RunManager" selected="Python.test_grid_search_basic_validation">
@@ -259,7 +264,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728695899741</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="refactor: movendo data_exploration.py e data_processing.py para dentro do diretório data">
+      <option name="closed" value="true" />
+      <created>1728774141236</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728774141236</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactor: movendo data_exploration.py e data_processing.py para dentro do diretório data">
+      <option name="closed" value="true" />
+      <created>1728774150576</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728774150576</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -267,6 +288,7 @@
     <MESSAGE value="feat: implementação do histórico e outros algoritmos de classificação" />
     <MESSAGE value="feat: implementação final com os algoritimos de classificação" />
     <MESSAGE value="fix: ajuste na separação de grupos e na seed" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: ajuste na separação de grupos e na seed" />
+    <MESSAGE value="refactor: movendo data_exploration.py e data_processing.py para dentro do diretório data" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: movendo data_exploration.py e data_processing.py para dentro do diretório data" />
   </component>
 </project>
