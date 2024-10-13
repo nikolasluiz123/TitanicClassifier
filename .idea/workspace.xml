@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8434c2a0-f7a2-4fcf-9853-9e3c11db9936" name="Changes" comment="refactor: movendo data_exploration.py e data_processing.py para dentro do diretório data">
+    <list default="true" id="8434c2a0-f7a2-4fcf-9853-9e3c11db9936" name="Changes" comment="chore: README.md&#10;&#10;Conclusão do readme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -87,7 +87,7 @@
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\model_validation" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_grid_search_basic_validation">
+  <component name="RunManager" selected="Python.test_random_search_cross_validation (1)">
     <configuration name="data_exploration" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TitanicClassifier" />
       <option name="ENV_FILES" value="" />
@@ -154,7 +154,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_random_search_basic_validation (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_random_search_cross_validation (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TitanicClassifier" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -163,11 +163,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/random_forest_classifier" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/decision_tree_classifier" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/random_forest_classifier/test_random_search_basic_validation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/decision_tree_classifier/test_random_search_cross_validation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -200,11 +200,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_random_search_cross_validation (1)" />
         <item itemvalue="Python.test_grid_search_basic_validation" />
         <item itemvalue="Python.data_processing" />
         <item itemvalue="Python.data_exploration" />
         <item itemvalue="Python.test_random_search_cross_validation" />
-        <item itemvalue="Python.test_random_search_basic_validation (1)" />
       </list>
     </recent_temporary>
   </component>

@@ -197,6 +197,12 @@ As métricas matemáticas que particularmente acho mais relevantes são:
 **Desvio Padrão** para entender se os parâmetros escolhidos para a busca precisam ser ajustados. Se esse número tiver muito alto as tentativas resultaram em valores distantes da média.
 **Mínimo e Máximo** para traduzir um pouco o desvio padrão, desse jeito se o mínimo estiver muito baixo, foram testadas combinações de parâmetros ruins e talvez isso possa ser otimizado.
 
+| Modelo                 | Média | Desvio Padrão | Acurácia Mínima | Acurácia Máxima |
+|------------------------|-------|---------------|-----------------|-----------------|
+| DecisionTreeClassifier | 0.74  | 0.058         | 0.63            | 0.80            |
+| KNeighborsClassifier   | 0.79  | 0.041         | 0.73            | 0.85            |
+| RandomForestClassifier | 0.78  | 0.038         | 0.72            | 0.84            |
+
 Avaliando a média, podemos notar que **RandomForestClassifier** e **KNeighborsClassifier** foram muito parecidos com os parâmetros testados.
 O desvio padrão desses dois também são os menores e se parecem bastante.
 Por fim, **KNeighborsClassifier** possui os valores mínimo e máximo mais altos, mas com pouca diferença.
