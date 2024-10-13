@@ -194,7 +194,9 @@ Agora referente aos três algorítmos testados, vamos analisar apenas os três a
 As métricas matemáticas que particularmente acho mais relevantes são:
 
 **Média** para ter uma noção mais básica de como foi a acurácia.
+
 **Desvio Padrão** para entender se os parâmetros escolhidos para a busca precisam ser ajustados. Se esse número tiver muito alto as tentativas resultaram em valores distantes da média.
+
 **Mínimo e Máximo** para traduzir um pouco o desvio padrão, desse jeito se o mínimo estiver muito baixo, foram testadas combinações de parâmetros ruins e talvez isso possa ser otimizado.
 
 Avaliando a média, podemos notar que **RandomForestClassifier** e **KNeighborsClassifier** foram muito parecidos com os parâmetros testados.
