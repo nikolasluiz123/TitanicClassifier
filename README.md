@@ -57,7 +57,7 @@ será atribuído para esse parâmetro do modelo um número inteiro aleatório en
 
 Além dessa peculiaridade de podermos utilizar funções que retornam valores em um range nós também limitamos quantas vezes a implementação de busca vai até esse grid buscar valores e fazer o fit, normalmente chamamos isso de **número de iterações**.
 
-Essa estratégia é que gostumo mais utilizar, ela tem o ponto positivo de não testar todas as combinações possíveis, por isso, você pode adicionar todos os parâmetros do modelo e apenas limitar quantas vezes vai fazer o fit e procurar o melhor modelo. O ponto negativo é que
+Essa estratégia é que gosto mais utilizar, ela tem o ponto positivo de não testar todas as combinações possíveis, por isso, você pode adicionar todos os parâmetros do modelo e apenas limitar quantas vezes vai fazer o fit e procurar o melhor modelo. O ponto negativo é que
 você não testará todas as combinações possíveis e talvez você não consiga encontrar o melhor modelo real.
 
 No projeto temos [ClassifierRandomHipperParamsSearcher](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/hiper_params_search/random_searcher.py#L8) que utiliza ``RandomSearchCV`` para buscar os parâmetros.
@@ -194,7 +194,9 @@ Agora referente aos três algorítmos testados, vamos analisar apenas os três a
 As métricas matemáticas que particularmente acho mais relevantes são:
 
 **Média** para ter uma noção mais básica de como foi a acurácia.
+
 **Desvio Padrão** para entender se os parâmetros escolhidos para a busca precisam ser ajustados. Se esse número tiver muito alto as tentativas resultaram em valores distantes da média.
+
 **Mínimo e Máximo** para traduzir um pouco o desvio padrão, desse jeito se o mínimo estiver muito baixo, foram testadas combinações de parâmetros ruins e talvez isso possa ser otimizado.
 
 | Modelo                 | Média | Desvio Padrão | Acurácia Mínima | Acurácia Máxima |
