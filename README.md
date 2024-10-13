@@ -63,3 +63,33 @@ você não testará todas as combinações possíveis e talvez você não consig
 No projeto temos [ClassifierRandomHipperParamsSearcher](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/hiper_params_search/random_searcher.py#L8) que utiliza ``RandomSearchCV`` para buscar os parâmetros.
 
 ### Validação do Melhor Modelo
+
+Após a busca do melhor modelo utilizando uma das duas implementações citadas acima, precisamos validar a eficácia e ter certeza de que realmente ele é bom o suficiente para o que desejamos. No projeto temos o diretório **model_validator** que contem implementações
+referentes a isso, especificamente falando de validadores temos [BaseValidator](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/validator.py#L8) que deve ser implementado por qualquer validador que desejarmos.
+
+Da mesma forma que temos um **Validator** também temos um resultado dessa validação, contendo métricas matemáticas para indicar o quão bem o modelo foi treinado e lidará com novos dados. No projeto temos a implementação [ClassifierValidationResult](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/result.py#L4) que é implementada por todos os resultados.
+
+#### Validação Simples
+
+A validação simples inicia já na separação dos dados, quando desejar realizar esse tipo de validação a função [train_test_split](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) do Scikit-Learn pode ser utiliza, dessa
+forma obteremos dados de treino e teste. Feito a separação dos dados, basta realizar um fit, seguido de um predict e calcular as métricas desejadas.
+
+A implementação [BasicValidator](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/basic_validator.py#L10) possui apenas duas métricas: **acurácia** e **matriz de confusão** as quais são armazenadas no resultado [ClassifierBasicValidationResult](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/result.py#L62) juntamente do melhor modelo que foi encontrado na busca e validado.
+
+Essa validação é uma boa forma de começar pois é simples de codificar e seu processamento costuma ser bem rápido, mas, o ponto negativo é que, como você realiza apenas uma divisão nos dados, treina e depois testa, você não consegue saber com tanta exatidão como o seu
+modelo vai lidar com dados diferentes.
+
+#### Validação Cruzada
+
+Após a busca dos parâmetros podemos utilizar a validação cruzada contina no [CrossValidator](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/cross_validator.py#L10). Internamente essa implementação utiliza [cross_val_score](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html), resumindo o processo feito pela função, nós não separamos os dados em treino e teste, pegamos todos os dados e estabelecemos um número (5 por exemplo) e serão montados N grupos de 5 elementos, os quais chamamos de Folds. A partir do momento que foram estabilecidos os Folds um grupo será utilizado para treino, enquanto outro grupo será utilizado para teste, até que todas as combinações de grupos seja realizada e um conjunto de resultados (chamado de scores) seja retornado pela função.
+
+Como nós temos N resultados podemos calcular mais métricas e armazarnar em [ClassifierCrossValidationResult](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/result.py#L15).
+
+### Histórico
+
+
+### Pipeline de Execução
+
+
+
+
