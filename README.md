@@ -57,7 +57,7 @@ será atribuído para esse parâmetro do modelo um número inteiro aleatório en
 
 Além dessa peculiaridade de podermos utilizar funções que retornam valores em um range nós também limitamos quantas vezes a implementação de busca vai até esse grid buscar valores e fazer o fit, normalmente chamamos isso de **número de iterações**.
 
-Essa estratégia é que gostumo mais utilizar, ela tem o ponto positivo de não testar todas as combinações possíveis, por isso, você pode adicionar todos os parâmetros do modelo e apenas limitar quantas vezes vai fazer o fit e procurar o melhor modelo. O ponto negativo é que
+Essa estratégia é que gosto mais utilizar, ela tem o ponto positivo de não testar todas as combinações possíveis, por isso, você pode adicionar todos os parâmetros do modelo e apenas limitar quantas vezes vai fazer o fit e procurar o melhor modelo. O ponto negativo é que
 você não testará todas as combinações possíveis e talvez você não consiga encontrar o melhor modelo real.
 
 No projeto temos [ClassifierRandomHipperParamsSearcher](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/hiper_params_search/random_searcher.py#L8) que utiliza ``RandomSearchCV`` para buscar os parâmetros.
