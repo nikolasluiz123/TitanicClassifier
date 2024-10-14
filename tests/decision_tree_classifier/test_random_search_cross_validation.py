@@ -4,6 +4,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 from data.data_processing import get_train_data
 from hiper_params_search.random_searcher import ClassifierRandomHipperParamsSearcher
+from hiper_params_search.result_analyzer import SearchResultAnalyzer
 from manager.history_manager import CrossValidationHistoryManager
 from manager.process_manager import ProcessManager
 from model_validator.cross_validator import CrossValidator
@@ -18,13 +19,10 @@ x = pd.get_dummies(x, columns=obj_columns)
 y = df_train['sobreviveu']
 
 search_params = {
-    'criterion': ['gini', 'entropy'],
-    'splitter': ['best', 'random'],
-    'max_depth': randint(1, 10),
-    'min_samples_split': randint(2, 20),
-    'min_samples_leaf': randint(1, 20),
-    'min_weight_fraction_leaf': uniform(loc=0.1, scale=0.4),
-    'max_features': [None, 'sqrt', 'log2'],
+    'criterion': ['gini', 'entropy', 'log_loss'],
+    'max_depth': randint(1, 100),
+    'min_samples_split': randint(2, 80),
+    'min_samples_leaf': randint(1, 30),
 }
 
 params_searcher = ClassifierRandomHipperParamsSearcher(
@@ -39,13 +37,20 @@ history_manager = CrossValidationHistoryManager(output_directory='history',
                                                 models_directory='models_cross_validation_random_search',
                                                 params_file_name='tested_params_cross_validation_random_search')
 
+analyzer = SearchResultAnalyzer(
+    output_dir=r'history\scatter_plots\cross_validation_random_search',
+    result_count=100,
+    save=True
+)
+
 process_manager = ProcessManager(
     seed=42,
     params_searcher=params_searcher,
     validator=validator,
     history_manager=history_manager,
+    result_analyzer=analyzer,
     save_history=True,
-    history_index=None
+    history_index=None,
 )
 
-process_manager.process(number_interations=1000)
+process_manager.process(number_interations=5000)

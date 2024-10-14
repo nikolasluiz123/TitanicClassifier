@@ -26,5 +26,33 @@
         },
         "search_time": "00:00:03",
         "validation_time": "00:00:13"
+    },
+    {
+        "mean": 0.7842608096129223,
+        "standard_deviation": 0.04071444195890984,
+        "median": 0.7692307692307693,
+        "variance": 0.0016576657840254381,
+        "standard_error": 0.018208051977218417,
+        "min_max_score": [
+            0.7464788732394366,
+            0.8601398601398601
+        ],
+        "estimator_params": {
+            "ccp_alpha": 0.0,
+            "class_weight": null,
+            "criterion": "entropy",
+            "max_depth": 21,
+            "max_features": null,
+            "max_leaf_nodes": null,
+            "min_impurity_decrease": 0.0,
+            "min_samples_leaf": 5,
+            "min_samples_split": 16,
+            "min_weight_fraction_leaf": 0.0,
+            "monotonic_cst": null,
+            "random_state": null,
+            "splitter": "best"
+        },
+        "search_time": "00:00:09",
+        "validation_time": "00:01:07"
     }
 ]

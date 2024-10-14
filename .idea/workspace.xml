@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8434c2a0-f7a2-4fcf-9853-9e3c11db9936" name="Changes" comment="chore: README.md&#10;&#10;Conclusão do readme">
+    <list default="true" id="8434c2a0-f7a2-4fcf-9853-9e3c11db9936" name="Changes" comment="chore: README.md&#10;&#10;Adicionando uma tabela para melhor visualizar os resultados">
+      <change afterPath="$PROJECT_DIR$/hiper_params_search/result_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager/process_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager/process_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/decision_tree_classifier/test_random_search_cross_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/decision_tree_classifier/test_random_search_cross_validation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,32 +48,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.data_exploration.executor&quot;: &quot;Run&quot;,
-    &quot;Python.data_processing.executor&quot;: &quot;Run&quot;,
-    &quot;Python.decision_tree_classifier_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.decision_tree_classifier_test_random_search (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.decision_tree_classifier_test_random_search (2).executor&quot;: &quot;Run&quot;,
-    &quot;Python.decision_tree_classifier_test_random_search_2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.k_neighbors_classifier_test_random_search.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.random_forest_classifier_test (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.random_forest_classifier_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_grid_search_basic_validation (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_grid_search_basic_validation.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_grid_search_cross_validation (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_grid_search_cross_validation.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_random_search_basic_validation (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_random_search_basic_validation.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_random_search_cross_validation (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_random_search_cross_validation.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/nikol/git/IA/TitanicClassifier/tests/random_forest_classifier&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.data_exploration.executor": "Run",
+    "Python.data_processing.executor": "Run",
+    "Python.decision_tree_classifier_test.executor": "Run",
+    "Python.decision_tree_classifier_test_random_search (1).executor": "Run",
+    "Python.decision_tree_classifier_test_random_search (2).executor": "Run",
+    "Python.decision_tree_classifier_test_random_search_2.executor": "Run",
+    "Python.k_neighbors_classifier_test_random_search.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.random_forest_classifier_test (1).executor": "Run",
+    "Python.random_forest_classifier_test.executor": "Run",
+    "Python.random_searcher.executor": "Run",
+    "Python.result_analyzer.executor": "Run",
+    "Python.test_grid_search_basic_validation (1).executor": "Run",
+    "Python.test_grid_search_basic_validation.executor": "Run",
+    "Python.test_grid_search_cross_validation (1).executor": "Run",
+    "Python.test_grid_search_cross_validation.executor": "Run",
+    "Python.test_random_search_basic_validation (1).executor": "Run",
+    "Python.test_random_search_basic_validation.executor": "Run",
+    "Python.test_random_search_cross_validation (1).executor": "Run",
+    "Python.test_random_search_cross_validation.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/nikol/git/IA/TitanicClassifier/tests/random_forest_classifier"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\nikol\git\IA\TitanicClassifier\tests\random_forest_classifier" />
@@ -88,28 +92,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.test_random_search_cross_validation (1)">
-    <configuration name="data_exploration" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="TitanicClassifier" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/data_exploration.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="data_processing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TitanicClassifier" />
       <option name="ENV_FILES" value="" />
@@ -124,6 +106,50 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/data_processing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="random_searcher" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TitanicClassifier" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hiper_params_search" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hiper_params_search/random_searcher.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="result_analyzer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TitanicClassifier" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hiper_params_search" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hiper_params_search/result_analyzer.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -176,35 +202,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_random_search_cross_validation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="TitanicClassifier" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/random_forest_classifier" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/random_forest_classifier/test_random_search_cross_validation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.test_random_search_cross_validation (1)" />
+        <item itemvalue="Python.random_searcher" />
+        <item itemvalue="Python.result_analyzer" />
         <item itemvalue="Python.test_grid_search_basic_validation" />
         <item itemvalue="Python.data_processing" />
-        <item itemvalue="Python.data_exploration" />
-        <item itemvalue="Python.test_random_search_cross_validation" />
       </list>
     </recent_temporary>
   </component>
@@ -280,8 +284,27 @@
       <option name="project" value="LOCAL" />
       <updated>1728774150576</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="chore: README.md&#10;&#10;Adicionando uma tabela para melhor visualizar os resultados">
+      <option name="closed" value="true" />
+      <created>1728857833478</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728857833478</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: pesquisa de parâmetros aleatória" />
@@ -289,6 +312,7 @@
     <MESSAGE value="feat: implementação final com os algoritimos de classificação" />
     <MESSAGE value="fix: ajuste na separação de grupos e na seed" />
     <MESSAGE value="refactor: movendo data_exploration.py e data_processing.py para dentro do diretório data" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: movendo data_exploration.py e data_processing.py para dentro do diretório data" />
+    <MESSAGE value="chore: README.md&#10;&#10;Adicionando uma tabela para melhor visualizar os resultados" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: README.md&#10;&#10;Adicionando uma tabela para melhor visualizar os resultados" />
   </component>
 </project>

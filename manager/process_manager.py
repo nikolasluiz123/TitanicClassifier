@@ -1,5 +1,8 @@
+import os
+
 import numpy as np
 
+from hiper_params_search.result_analyzer import SearchResultAnalyzer
 from hiper_params_search.searcher import ClassifierHipperParamsSearcher
 from manager.history_manager import HistoryManager
 from model_validator.result import ClassifierValidationResult
@@ -17,11 +20,13 @@ class ProcessManager:
                  params_searcher: ClassifierHipperParamsSearcher,
                  validator: BaseValidator,
                  history_manager: HistoryManager,
+                 result_analyzer: SearchResultAnalyzer,
                  save_history: bool = True,
                  history_index: int = None):
         self.params_searcher = params_searcher
         self.validator = validator
         self.history_manager = history_manager
+        self.result_analyzer = result_analyzer
         self.save_history = save_history
         self.history_index = history_index
 
@@ -37,6 +42,7 @@ class ProcessManager:
         validation_result = self.__process_validation(search_cv)
         self.__save_data_in_history(validation_result)
         self.__show_results(validation_result)
+        self.__analyze_results(search_cv.cv_results_)
 
     def __process_hiper_params_search(self, number_interations: int = None):
         """
@@ -92,6 +98,14 @@ class ProcessManager:
         print(f'Tempo da Busca            : {self.__format_time(search_time)}')
         print(f'Tempo da Validação        : {self.__format_time(validation_time)}')
 
+
+    def __analyze_results(self, cv_results):
+        self.result_analyzer.show_boxplot_graphics_from_tested_params(cv_results)
+
+        print()
+        print('-' * 50)
+        print('Piores Parâmetros: ')
+        self.result_analyzer.show_bad_params(cv_results)
 
     @staticmethod
     def __format_time(seconds):
