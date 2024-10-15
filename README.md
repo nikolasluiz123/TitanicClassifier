@@ -81,9 +81,9 @@ modelo vai lidar com dados diferentes.
 
 #### Validação Cruzada
 
-Após a busca dos parâmetros podemos utilizar a validação cruzada contina no [CrossValidator](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/cross_validator.py#L10). Internamente essa implementação utiliza [cross_val_score](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html), resumindo o processo feito pela função, nós não separamos os dados em treino e teste, pegamos todos os dados e estabelecemos um número (5 por exemplo) e serão montados N grupos de 5 elementos, os quais chamamos de Folds. A partir do momento que foram estabilecidos os Folds um grupo será utilizado para treino, enquanto outro grupo será utilizado para teste, até que todas as combinações de grupos seja realizada e um conjunto de resultados (chamado de scores) seja retornado pela função.
+Após a busca dos parâmetros podemos utilizar a validação cruzada contida no [CrossValidator](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/cross_validator.py#L10). Internamente essa implementação utiliza [cross_val_score](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html), resumindo o processo feito pela função, nós não separamos os dados em treino e teste, pegamos todos os dados e estabelecemos um número (5 por exemplo) e serão montados N grupos de 5 elementos, os quais chamamos de Folds.
 
-Como nós temos N resultados podemos calcular mais métricas e armazarnar em [ClassifierCrossValidationResult](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/result.py#L15).
+Tendo sido realizada essa divisão dos Folds ocorrerão diversos fits, a cada iteração um grupo é selecionado para teste e o restante para treino, o processo acaba quando todos os Folds já tiverem sido utilizados para teste uma vez. Como estamos falando de um processo de várias fits e predicts teremos uma lista que chamamos de scores, com eles podemos calcular mais métricas e armazarnar em [ClassifierCrossValidationResult](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/model_validator/result.py#L15).
 
 ### Histórico
 
@@ -199,11 +199,11 @@ As métricas matemáticas que particularmente acho mais relevantes são:
 
 **Mínimo e Máximo** para traduzir um pouco o desvio padrão, desse jeito se o mínimo estiver muito baixo, foram testadas combinações de parâmetros ruins e talvez isso possa ser otimizado.
 
-| Modelo                 | Média | Desvio Padrão | Acurácia Mínima | Acurácia Máxima |
-|------------------------|-------|---------------|-----------------|-----------------|
-| DecisionTreeClassifier | 0.74  | 0.058         | 0.63            | 0.80            |
-| KNeighborsClassifier   | 0.79  | 0.041         | 0.73            | 0.85            |
-| RandomForestClassifier | 0.78  | 0.038         | 0.72            | 0.84            |
+| Modelo                 | Média | Desvio Padrão | Acurácia Mínima | Acurácia Máxima | Tempo da Busca de Params | Tempo da Validação |
+|------------------------|-------|---------------|-----------------|-----------------|--------------------------|--------------------|
+| DecisionTreeClassifier | 0.74  | 0.058         | 0.63            | 0.80            | 00:00:03                 | 00:00:13           |
+| KNeighborsClassifier   | 0.79  | 0.041         | 0.73            | 0.85            | 00:00:04                 | 00:00:27           |
+| RandomForestClassifier | 0.78  | 0.038         | 0.72            | 0.84            | 00:00:24                 | 00:03:34           |
 
 Avaliando a média, podemos notar que **RandomForestClassifier** e **KNeighborsClassifier** foram muito parecidos com os parâmetros testados.
 O desvio padrão desses dois também são os menores e se parecem bastante.
