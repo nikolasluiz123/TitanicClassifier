@@ -2,10 +2,11 @@ import json
 import os
 import pickle
 from abc import ABC, abstractmethod
+from typing import TypeVar
 
-from model_validator.result import ClassifierCrossValidationResult, ClassifierValidationResult, \
-    ClassifierBasicValidationResult
+from model_validator.result import ScikitLearnCrossValidationResult, ValidationResult
 
+R = TypeVar('R', bound=ValidationResult)
 
 class HistoryManager(ABC):
     """
@@ -19,22 +20,38 @@ class HistoryManager(ABC):
 
     def __init__(self, output_directory: str, models_directory: str, params_file_name: str):
         """
-        :param output_directory: Diretório que armazenará todos os dados de histórico
-        :param models_directory: Diretório específico para os modelos treinados
-        :param params_file_name: Nome do arquivo JSON que salvará os valores dos parâmetros que geraram o melhor modelo
+        :param output_directory: Diretório que armazenará todos os dados de histórico.
+
+        :param models_directory: Diretório específico para os modelos treinados.
+
+        :param params_file_name: Nome do arquivo JSON que salvará os valores dos parâmetros que geraram o melhor modelo.
         """
         self.output_directory = output_directory
         self.models_directory = os.path.join(self.output_directory, models_directory)
         self.params_file_name = params_file_name
 
     @abstractmethod
-    def save_result(self, classifier_result, search_time: str, validation_time: str):
+    def save_result(self,
+                    classifier_result,
+                    feature_selection_time: str,
+                    search_time: str,
+                    validation_time: str,
+                    scoring: str,
+                    features: list[str]):
         """
         Função responsável por salvar todos os dados relevantes para o histórico.
 
-        :param classifier_result: Resultado da validação
-        :param search_time: Tempo que levou a execução da busca por parâmetros
+        :param classifier_result: Resultado da validação.
+
+        :param feature_selection_time: Tempo que levou a seleção das melhores features.
+
+        :param search_time: Tempo que levou a execução da busca por parâmetros.
+
         :param validation_time: Tempo que levou a execução da validação
+
+        :param scoring: Métrica utilizada para definição do melhor modelo.
+
+        :param features: Features selecionadas.
         """
 
     def _create_output_dir(self):
@@ -81,14 +98,14 @@ class HistoryManager(ABC):
             return len(data) > 0
 
     @abstractmethod
-    def load_result_from_history(self, index: int = -1) -> ClassifierValidationResult:
+    def load_validation_result_from_history(self, index: int = -1) -> R:
         """
-        Função para recuperar um registro da lista do JSON de histórico
+        Função para obter um objeto ValidationResult com os dados obtidos do JSON.
 
         :param index: Índice da lista que deseja retornar
         """
 
-    def _get_dictionary_from_json(self, index):
+    def get_dictionary_from_json(self, index):
         """
         Retorna um dicionário a partir do JSON do histórico
 
@@ -97,7 +114,8 @@ class HistoryManager(ABC):
         output_path = os.path.join(self.output_directory, f"{self.params_file_name}.json")
 
         if not os.path.exists(output_path):
-            raise FileNotFoundError(f"O arquivo {self.params_file_name}.json não foi encontrado no diretório {self.output_directory}.")
+            raise FileNotFoundError(
+                f"O arquivo {self.params_file_name}.json não foi encontrado no diretório {self.output_directory}.")
 
         with open(output_path, 'r') as file:
             data = json.load(file)
@@ -147,17 +165,24 @@ class HistoryManager(ABC):
             data = json.load(file)
             return len(data)
 
+
 class CrossValidationHistoryManager(HistoryManager):
     """
-    Classe para manipular o histórico quando é utilizada a estratégia de validação cruzada, que gera N valores e podem
-    ser calculadas diversas métricas e obter resultados confiáveis.
+    Classe para manipular o histórico quando é utilizada a estratégia de validação cruzada.
     """
 
     def __init__(self, output_directory: str, models_directory: str, params_file_name: str):
         super().__init__(output_directory, models_directory, params_file_name)
 
-    def save_result(self, classifier_result: ClassifierCrossValidationResult, search_time: str, validation_time: str):
+    def save_result(self,
+                    classifier_result: ScikitLearnCrossValidationResult,
+                    feature_selection_time: str,
+                    search_time: str,
+                    validation_time: str,
+                    scoring: str,
+                    features: list[str]):
         dictionary = {
+            'estimator': type(classifier_result.estimator).__name__,
             'mean': classifier_result.mean,
             'standard_deviation': classifier_result.standard_deviation,
             'median': classifier_result.median,
@@ -165,6 +190,9 @@ class CrossValidationHistoryManager(HistoryManager):
             'standard_error': classifier_result.standard_error,
             'min_max_score': classifier_result.min_max_score,
             'estimator_params': classifier_result.estimator.get_params(),
+            'scoring': scoring,
+            'features': ", ".join(features),
+            'feature_selection_time': feature_selection_time,
             'search_time': search_time,
             'validation_time': validation_time
         }
@@ -173,48 +201,16 @@ class CrossValidationHistoryManager(HistoryManager):
         self._save_dictionary_in_json(dictionary)
         self._save_model(classifier_result.estimator)
 
-    def load_result_from_history(self, index: int = -1) -> ClassifierCrossValidationResult:
-        result_dict = self._get_dictionary_from_json(index)
+    def load_validation_result_from_history(self, index: int = -1) -> ScikitLearnCrossValidationResult:
+        result_dict = self.get_dictionary_from_json(index)
 
-        return ClassifierCrossValidationResult(
+        return ScikitLearnCrossValidationResult(
             mean=result_dict['mean'],
             standard_deviation=result_dict['standard_deviation'],
             median=result_dict['median'],
             variance=result_dict['variance'],
             standard_error=result_dict['standard_error'],
             min_max_score=result_dict['min_max_score'],
+            scoring=result_dict['scoring'],
             estimator=self.get_saved_model(self._get_history_len()),
-        )
-
-
-class BasicValidationHistoryManager(HistoryManager):
-    """
-    Classe para manipular o histórico quando é utilizada a estratégia de validação basica, separando em treino e teste.
-
-    Optando por essa maneira obtemos menos métricas pois só teremos 1 valor no predict.
-    """
-
-    def __init__(self, output_directory: str, models_directory: str, params_file_name: str):
-        super().__init__(output_directory, models_directory, params_file_name)
-
-    def save_result(self, classifier_result: ClassifierBasicValidationResult, search_time: str, validation_time: str):
-        dictionary = {
-            'score': classifier_result.score,
-            'estimator_params': classifier_result.estimator.get_params(),
-            'confusion_matrix': classifier_result.confusion_matrix.tolist(),
-            'search_time': search_time,
-            'validation_time': validation_time
-        }
-
-        self._create_output_dir()
-        self._save_dictionary_in_json(dictionary)
-        self._save_model(classifier_result.estimator)
-
-    def load_result_from_history(self, index: int = -1) -> ClassifierBasicValidationResult:
-        result_dict = self._get_dictionary_from_json(index)
-
-        return ClassifierBasicValidationResult(
-            score=result_dict['score'],
-            estimator=self.get_saved_model(self._get_history_len()),
-            confusion_matrix=result_dict['confusion_matrix']
         )

@@ -9,9 +9,9 @@ dos objetos DataFrame está localizada em [data_processing](https://github.com/n
 
 ### Busca de Hiper Parâmetros
 
-A busca de parâmetros para os modelos é algo muito importante para obtermos bons resultados, o projeto mantem as implementações referentes a isso no diretório **hiper_params_search**. Como a biblioteca Scikit-Learn fornece duas formas de busca de parâmetros foi implementada
-uma classe genérica para representar um 'Buscador de Parâmetros', a qual foi chamada de [ClassifierHipperParamsSearcher](https://github.com/nikolasluiz123/TitanicClassifier/blob/master/hiper_params_search/searcher.py#L6), dessa forma podemos implementar tanto a Busca Aleatória
-quanto a Busca em Grid.
+A busca de parâmetros para os modelos é algo muito importante para obtermos bons resultados, o projeto mantem as implementações referentes a isso no diretório **hiper_params_search**. A biblioteca fornece várias formas
+de busca dos melhores parâmetros do estimador, nesse projeto foi optado por utilizar a implementação [RandomizedSearchCV](https://scikit-learn.org/1.5/modules/generated/sklearn.model_selection.RandomizedSearchCV.html)
+implementada na classe [RandomHipperParamsSearcher]()
 
 #### Busca em Grid
 

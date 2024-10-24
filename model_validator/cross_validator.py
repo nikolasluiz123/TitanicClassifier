@@ -3,47 +3,47 @@ import time
 import numpy as np
 from sklearn.model_selection import cross_val_score
 
-from model_validator.result import ClassifierCrossValidationResult
-from model_validator.validator import BaseValidator
+from model_validator.result import ScikitLearnCrossValidationResult
+from model_validator.validator import ScikitLearnBaseValidator
 
 
-class CrossValidator(BaseValidator):
+class CrossValidatorScikitLearn(ScikitLearnBaseValidator):
     """
-    Classe que implementa a validação crusada do modelo encontrado pela busca de hiper parâmetros
+    Classe que implementa a validação cruzada do modelo encontrado pela busca de hiper parâmetros de modelos do Scikit-Learn.
     """
 
     def __init__(self,
+                 log_level: int = 0,
+                 n_jobs: int = -1):
+        super().__init__(log_level, n_jobs)
+
+    def validate(self,
+                 searcher,
                  data_x,
                  data_y,
-                 log_level: int = 1,
-                 n_jobs: int = -1,
-                 scoring='accuracy'):
-        super().__init__(data_x, data_y, log_level, scoring)
-
-        self.n_jobs = n_jobs
-
-
-    def validate(self, searcher) -> ClassifierCrossValidationResult:
+                 cv,
+                 scoring='accuracy') -> ScikitLearnCrossValidationResult:
         self.start_best_model_validation = time.time()
 
         scores = cross_val_score(estimator=searcher,
-                                 X=self.data_x,
-                                 y=self.data_y,
-                                 cv=self.cv,
+                                 X=data_x,
+                                 y=data_y,
+                                 cv=cv,
                                  n_jobs=self.n_jobs,
                                  verbose=self.log_level,
-                                 scoring=self.scoring)
+                                 scoring=scoring)
 
         self.end_best_model_validation = time.time()
 
-        result = ClassifierCrossValidationResult(
+        result = ScikitLearnCrossValidationResult(
             mean=np.mean(scores),
             standard_deviation=np.std(scores),
             median=np.median(scores),
             variance=np.var(scores),
             standard_error=np.std(scores) / np.sqrt(len(scores)),
-            min_max_score=(np.min(scores), np.max(scores)),
-            estimator=searcher.best_estimator_
+            min_max_score=(round(float(np.min(scores)), 4), round(float(np.max(scores)), 4)),
+            estimator=searcher.best_estimator_,
+            scoring=scoring
         )
 
         return result

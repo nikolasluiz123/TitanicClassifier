@@ -1,18 +1,24 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
-class ClassifierValidationResult(ABC):
-    """
-    Classe base de resultado de validação dos modelos de classificação
-    """
+class ValidationResult(ABC):
 
     @abstractmethod
-    def show_cross_val_metrics(self):
+    def append_data(self, pipeline_infos: dict[str, Any]) -> dict[str, Any]:
         """
-        Função para exibir as métricas de validação.
+        Função para adicionar os dados de validação em um dicionário que já contem algumas informações.
+
+        :param pipeline_infos: Dicionário que contém as informações do pipeline que está sendo executado.
+
+        :return: Um novo dicionário com as informações adicionadas.
         """
 
-class ClassifierCrossValidationResult(ClassifierValidationResult):
+
+class ScikitLearnCrossValidationResult(ValidationResult):
+    """
+    Implementação específica para armazenar os dados da validação cruzada do ScikitLearn.
+    """
 
     def __init__(self,
                  mean: float,
@@ -21,7 +27,8 @@ class ClassifierCrossValidationResult(ClassifierValidationResult):
                  variance: float,
                  standard_error: float,
                  min_max_score: tuple[float, float],
-                 estimator):
+                 estimator,
+                 scoring: str):
         """
             :param mean: Média dos scores individuais, fornece uma estimativa central do desempenho do modelo.
             :param standard_deviation: Desvio Padrão, mede a variação dos scores em diferentes folds. Um Desvio Padrão
@@ -36,6 +43,7 @@ class ClassifierCrossValidationResult(ClassifierValidationResult):
             :param min_max_score: O score máximo e mínimo ajudam a identificar a melhor e a pior performance entre os
             folds.
             :param estimator Estimador com os melhores parâmetros e que foi testado.
+            :param scoring Métrica avalida.
         """
 
         self.mean = mean
@@ -45,35 +53,16 @@ class ClassifierCrossValidationResult(ClassifierValidationResult):
         self.standard_error = standard_error
         self.min_max_score = min_max_score
         self.estimator = estimator
+        self.scoring = scoring
 
-    def show_cross_val_metrics(self):
-        print("Resultados das Métricas de Validação Cruzada da Classificação")
-        print("-" * 50)
-        print(f"Média dos scores          : {self.mean:.4f}")
-        print(f"Desvio padrão             : {self.standard_deviation:.4f}")
-        print(f"Mediana dos scores        : {self.median:.4f}")
-        print(f"Variância dos scores      : {self.variance:.4f}")
-        print(f"Erro padrão da média      : {self.standard_error:.4f}")
-        print(f"Score mínimo              : {self.min_max_score[0]:.4f}")
-        print(f"Score máximo              : {self.min_max_score[1]:.4f}")
-        print(f"Melhor Estimator          : {self.estimator} ")
-        print("-" * 50)
+    def append_data(self, pipeline_infos: dict[str, Any]) -> dict[str, Any]:
+        pipeline_infos['scoring'] = self.scoring
+        pipeline_infos['mean'] = self.mean
+        pipeline_infos['standard_deviation'] = self.standard_deviation
+        pipeline_infos['median'] = self.median
+        pipeline_infos['variance'] = self.variance
+        pipeline_infos['standard_error'] = self.standard_error
+        pipeline_infos['min_max_score'] = self.min_max_score
+        pipeline_infos['scoring'] = self.scoring
 
-class ClassifierBasicValidationResult(ClassifierValidationResult):
-
-    def __init__(self,
-                 score: float,
-                 estimator,
-                 confusion_matrix):
-        self.score = score
-        self.estimator = estimator
-        self.confusion_matrix = confusion_matrix
-
-    def show_cross_val_metrics(self):
-        print("Resultados das Métricas de Validação Básica da Classificação")
-        print("-" * 50)
-        print(f"Média do score          : {self.score:.4f}")
-        print(f"Melhor Estimator          : {self.estimator} ")
-        print(f"Matriz de Confusão:  ")
-        print(self.confusion_matrix)
-        print("-" * 50)
+        return pipeline_infos
