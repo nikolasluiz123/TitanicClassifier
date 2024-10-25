@@ -1,0 +1,30 @@
+[
+    {
+        "estimator": "GaussianProcessClassifier",
+        "mean": 0.7871478873239437,
+        "standard_deviation": 0.03160252891435644,
+        "median": 0.7831572769953051,
+        "variance": 0.0009987198337827348,
+        "standard_error": 0.009993597119069464,
+        "min_max_score": [
+            0.7465,
+            0.8451
+        ],
+        "estimator_params": {
+            "copy_X_train": true,
+            "kernel": null,
+            "max_iter_predict": 100,
+            "multi_class": "one_vs_rest",
+            "n_jobs": null,
+            "n_restarts_optimizer": 7,
+            "optimizer": "fmin_l_bfgs_b",
+            "random_state": null,
+            "warm_start": false
+        },
+        "scoring": "accuracy",
+        "features": "classe_social, idade, sexo_female",
+        "feature_selection_time": "00:00:01.000",
+        "search_time": "00:05:42.000",
+        "validation_time": "00:43:58.000"
+    }
+]

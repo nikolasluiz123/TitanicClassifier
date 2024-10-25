@@ -1,0 +1,29 @@
+[
+    {
+        "estimator": "KNeighborsClassifier",
+        "mean": 0.8095266040688577,
+        "standard_deviation": 0.03398941268673164,
+        "median": 0.8055555555555556,
+        "variance": 0.0011552801747889538,
+        "standard_error": 0.010748396042149515,
+        "min_max_score": [
+            0.7606,
+            0.8873
+        ],
+        "estimator_params": {
+            "algorithm": "ball_tree",
+            "leaf_size": 97,
+            "metric": "minkowski",
+            "metric_params": null,
+            "n_jobs": null,
+            "n_neighbors": 8,
+            "p": 1,
+            "weights": "distance"
+        },
+        "scoring": "accuracy",
+        "features": "classe_social,  idade,  sexo_female",
+        "feature_selection_time": "00:00:00.000",
+        "search_time": "00:00:04.000",
+        "validation_time": "00:00:57.000"
+    }
+]

@@ -28,9 +28,9 @@ obj_columns = df_train.select_dtypes(include='object').columns
 x = pd.get_dummies(x, columns=obj_columns)
 y = df_train['sobreviveu']
 
-feature_searcher = RecursiveFeatureSearcher(log_level=1)
-params_searcher = RandomHipperParamsSearcher(number_iterations=1000, log_level=1)
-cross_validator = CrossValidatorScikitLearn(log_level=1)
+feature_searcher = RecursiveFeatureSearcher(log_level=1, n_jobs=8)
+params_searcher = RandomHipperParamsSearcher(number_iterations=500, log_level=1, n_jobs=8)
+cross_validator = CrossValidatorScikitLearn(log_level=1, n_jobs=8)
 
 pipelines = [
     ScikitLearnPipeline(
@@ -72,22 +72,6 @@ pipelines = [
             params_file_name='random_forest_classifier_best_params')
     ),
     ScikitLearnPipeline(
-        estimator=SVC(),
-        params={
-            'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
-            'degree': randint(2, 5),
-            'gamma': ['scale', 'auto'],
-            'shrinking': [True, False]
-        },
-        feature_searcher=feature_searcher,
-        params_searcher=params_searcher,
-        validator=cross_validator,
-        history_manager=CrossValidationHistoryManager(
-            output_directory='history',
-            models_directory='svc_models',
-            params_file_name='svc_best_params')
-    ),
-    ScikitLearnPipeline(
         estimator=GaussianProcessClassifier(),
         params={
             'optimizer': ['fmin_l_bfgs_b', None],
@@ -120,38 +104,6 @@ pipelines = [
             output_directory='history',
             models_directory='k_neighbors_classifier_models',
             params_file_name='k_neighbors_classifier_best_params')
-    ),
-    ScikitLearnPipeline(
-        estimator=MLPClassifier(),
-        params={
-            'hidden_layer_sizes': [(100,), (100, 50), (100, 50, 25)],
-            'activation': ['identity', 'logistic', 'tanh', 'relu'],
-            'solver': ['lbfgs', 'sgd', 'adam'],
-            'alpha': uniform(loc=0.0001, scale=0.01),
-            'learning_rate': ['constant', 'invscaling', 'adaptive']
-        },
-        feature_searcher=feature_searcher,
-        params_searcher=params_searcher,
-        validator=cross_validator,
-        history_manager=CrossValidationHistoryManager(
-            output_directory='history',
-            models_directory='mlp_classifier_models',
-            params_file_name='mlp_classifier_best_params')
-    ),
-    ScikitLearnPipeline(
-        estimator=AdaBoostClassifier(),
-        params={
-            'n_estimators': randint(10, 50),
-            'learning_rate': uniform(loc=0.01, scale=0.5),
-            'algorithm': ['SAMME', 'SAMME.R']
-        },
-        feature_searcher=feature_searcher,
-        params_searcher=params_searcher,
-        validator=cross_validator,
-        history_manager=CrossValidationHistoryManager(
-            output_directory='history',
-            models_directory='ada_boost_classifier_models',
-            params_file_name='ada_boost_classifier_best_params')
     )
 ]
 
@@ -166,6 +118,7 @@ manager = ScikitLearnMultiProcessManager(
     pipelines=pipelines,
     history_manager=best_params_history_manager,
     save_history=True,
+    history_index=-1
 )
 
 manager.process_pipelines()

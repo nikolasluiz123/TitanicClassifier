@@ -1,0 +1,34 @@
+[
+    {
+        "estimator": "DecisionTreeClassifier",
+        "mean": 0.7814749608763693,
+        "standard_deviation": 0.0509204574244842,
+        "median": 0.7777777777777778,
+        "variance": 0.002592892984318708,
+        "standard_error": 0.016102462495900145,
+        "min_max_score": [
+            0.7083,
+            0.8889
+        ],
+        "estimator_params": {
+            "ccp_alpha": 0.0,
+            "class_weight": null,
+            "criterion": "entropy",
+            "max_depth": 5,
+            "max_features": null,
+            "max_leaf_nodes": null,
+            "min_impurity_decrease": 0.0,
+            "min_samples_leaf": 4,
+            "min_samples_split": 5,
+            "min_weight_fraction_leaf": 0.12713482364206877,
+            "monotonic_cst": null,
+            "random_state": null,
+            "splitter": "best"
+        },
+        "scoring": "accuracy",
+        "features": "classe_social, idade, sexo_female",
+        "feature_selection_time": "00:00:01.000",
+        "search_time": "00:00:02.000",
+        "validation_time": "00:00:31.000"
+    }
+]
